@@ -1,0 +1,16 @@
+##CONFIG##
+
+[?1hCodes: S - State, L - Link, u - Up, D - Down, A - Admin Down
+Interface        IP Address                        S/L  Description
+---------        ----------                        ---  -----------
+eth0             10.90.95.131/25                   u/u  WAN-MTT 
+eth1             -                                 u/u  WAN-VNPT 
+eth2             112.109.95.201/30                 u/u  FTTH 
+eth3             10.1.21.1/24                      u/u  TSL 
+lo               127.0.0.1/8                       u/u  
+                 ::1/128
+pppoe0           14.161.44.211                     u/u  
+tun0             10.90.94.10/30                    u/u  Tun_GS25-NGT_VNPT
+
+##ENDOF_CONFIG##
+
