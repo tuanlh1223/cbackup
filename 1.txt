@@ -1,16 +1,67 @@
 ##CONFIG##
 
-[?1hCodes: S - State, L - Link, u - Up, D - Down, A - Admin Down
-Interface        IP Address                        S/L  Description
----------        ----------                        ---  -----------
-eth0             10.90.95.131/25                   u/u  WAN-MTT 
-eth1             -                                 u/u  WAN-VNPT 
-eth2             112.109.95.201/30                 u/u  FTTH 
-eth3             10.1.21.1/24                      u/u  TSL 
-lo               127.0.0.1/8                       u/u  
-                 ::1/128
-pppoe0           14.161.44.211                     u/u  
-tun0             10.90.94.10/30                    u/u  Tun_GS25-NGT_VNPT
+set interfaces bridge br9330 description 'Br_Panalpina_VNPT'
+set interfaces ethernet eth0 duplex 'auto'
+set interfaces ethernet eth0 hw-id '00:90:27:ef:4d:3a'
+set interfaces ethernet eth0 smp_affinity 'auto'
+set interfaces ethernet eth0 speed 'auto'
+set interfaces ethernet eth1 description 'WAN-VNPT'
+set interfaces ethernet eth1 duplex 'auto'
+set interfaces ethernet eth1 hw-id '00:90:27:ef:4d:3b'
+set interfaces ethernet eth1 pppoe 0 default-route 'none'
+set interfaces ethernet eth1 pppoe 0 mtu '1492'
+set interfaces ethernet eth1 pppoe 0 name-server 'auto'
+set interfaces ethernet eth1 pppoe 0 password '6d4f0ee4'
+set interfaces ethernet eth1 pppoe 0 user-id 'minhtu_106ngt'
+set interfaces ethernet eth1 smp_affinity 'auto'
+set interfaces ethernet eth1 speed 'auto'
+set interfaces ethernet eth2 duplex 'auto'
+set interfaces ethernet eth2 hw-id '00:90:27:ef:4d:3c'
+set interfaces ethernet eth2 smp_affinity 'auto'
+set interfaces ethernet eth2 speed 'auto'
+set interfaces ethernet eth3 duplex 'auto'
+set interfaces ethernet eth3 hw-id '00:90:27:ef:4d:3d'
+set interfaces ethernet eth3 smp_affinity 'auto'
+set interfaces ethernet eth3 speed 'auto'
+set interfaces l2tpv3 l2tpeth9330 bridge-group bridge 'br9330'
+set interfaces l2tpv3 l2tpeth9330 description 'L2TP_Panalpina_VNPT'
+set interfaces l2tpv3 l2tpeth9330 destination-port '5000'
+set interfaces l2tpv3 l2tpeth9330 encapsulation 'ip'
+set interfaces l2tpv3 l2tpeth9330 local-ip '14.161.44.211'
+set interfaces l2tpv3 l2tpeth9330 mtu '1500'
+set interfaces l2tpv3 l2tpeth9330 peer-session-id '9330'
+set interfaces l2tpv3 l2tpeth9330 peer-tunnel-id '9330'
+set interfaces l2tpv3 l2tpeth9330 remote-ip '182.237.20.37'
+set interfaces l2tpv3 l2tpeth9330 session-id '9330'
+set interfaces l2tpv3 l2tpeth9330 source-port '5000'
+set interfaces l2tpv3 l2tpeth9330 tunnel-id '9330'
+set interfaces loopback 'lo'
+set interfaces tunnel tun0 address '10.90.93.198/30'
+set interfaces tunnel tun0 description 'Tun_Panalpina_VNPT'
+set interfaces tunnel tun0 encapsulation 'gre'
+set interfaces tunnel tun0 local-ip '14.161.44.211'
+set interfaces tunnel tun0 mtu '1450'
+set interfaces tunnel tun0 multicast 'disable'
+set interfaces tunnel tun0 remote-ip '182.237.20.37'
+set protocols static interface-route 103.235.210.250/32 next-hop-interface 'pppoe0'
+set protocols static interface-route 112.109.90.88/32 next-hop-interface 'pppoe0'
+set protocols static interface-route 182.237.20.26/32 next-hop-interface 'pppoe0'
+set protocols static interface-route 182.237.20.32/32 next-hop-interface 'pppoe0'
+set protocols static interface-route 182.237.20.37/32 next-hop-interface 'pppoe0'
+set protocols static interface-route 182.237.20.38/32 next-hop-interface 'pppoe0'
+set protocols static interface-route 182.237.20.58/32 next-hop-interface 'pppoe0'
+set protocols static interface-route 182.237.23.26/32 next-hop-interface 'pppoe0'
+set service snmp community mtt authorization 'ro'
+set service ssh port '56789'
+set system config-management commit-revisions '20'
+set system console device ttyS0 speed '9600'
+set system host-name 'Panalpina-Conghoa'
+set system login user vyos authentication encrypted-password '$6$XCVUCWYTG$fhBLJDqIjBgIdwPZz0lmyLsXlgy27NtwkSymL/GbdDmq6TerIIBajFZFCGC1m7eJolNCt2GLXIwOOgD7eBgjf/'
+set system login user vyos authentication plaintext-password ''
+set system login user vyos level 'admin'
+set system syslog global facility all level 'notice'
+set system syslog global facility protocols level 'debug'
+set system time-zone 'Asia/Ho_Chi_Minh'
 
 ##ENDOF_CONFIG##
 
